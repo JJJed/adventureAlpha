@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/ui-darkness/jquery-ui.css">
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/ui/1.13.0-rc.3/jquery-ui.js"
+  integrity="sha256-tYLuvehjddL4JcVWw1wRMB0oPSz7fKEpdZrIWf3rWNA="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/css/game.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='static/css/game.js') }}"></script>
+    <title>Adventure</title>
+</head>
+<body>
+<div id="forest" class="mapSpot">
+    <div class="mapSpotDiv"><img id="forestIMG" class="mapSpotIMG" src="{{ url_for('static', filename='images/forest.png') }}" onclick="openMapSpot('forest')">
+    <h2 id="forestTXT" class="mapSpotTXT">FOREST</h2></div>
+</div>
+<div id="mine" class="mapSpot">
+    <div class="mapSpotDiv"><img id="mineIMG" class="mapSpotIMG" src="{{ url_for('static', filename='images/mine.png') }}">
+    <h2 id="mineTXT" class="mapSpotTXT">MINE</h2></div>
+</div>
+<div id="arena" class="mapSpot">
+    <div class="mapSpotDiv"><img id="arenaIMG" class="mapSpotIMG" src="{{ url_for('static', filename='images/arena.png') }}">
+    <h2 id="arenaTXT" class="mapSpotTXT">ARENA</h2></div>
+</div>
+<div id="plains" class="mapSpot">
+    <div class="mapSpotDiv"><img id="plainsIMG" class="mapSpotIMG" src="{{ url_for('static', filename='images/plains.jpg') }}">
+    <h2 id="plainsTXT" class="mapSpotTXT">PLAINS</h2></div>
+</div>
+<div id="forge" class="mapSpot">
+    <div class="mapSpotDiv"><img id="forgeIMG" class="mapSpotIMG" src="{{ url_for('static', filename='images/forge.png') }}">
+    <h2 id="forgeTXT" class="mapSpotTXT">FORGE</h2></div>
+</div>
+<div id="leaderboard"></div>
+<div id="shop"></div>
+<div id="settings"></div>
+</body>
+</html>

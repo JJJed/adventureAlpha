@@ -1,0 +1,87 @@
+@font-face {
+    font-family: Rock3D;
+    src: url("/static/fonts/Rock3D-Regular.ttf");
+}
+
+html {
+    background-image: url("/static/images/backgnd.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.mapSpot {
+    z-index: 1;
+}
+
+.mapSpotIMG {
+    width: 15vw;
+    position: absolute;
+    border-radius: 10%;
+    border: 0.2em solid CadetBlue;
+}
+
+.mapSpotIMG:hover {
+    border: 0.4em solid crimson;
+}
+
+.mapSpotTXT {
+    position: absolute;
+    font-family: Rock3D;
+    padding: 0;
+    width: 10vw;
+    font-size: 4vh;
+    color: crimson;
+    height: 5vh;
+    pointer-events: none;
+}
+
+#forestIMG {
+    left: 5vw;
+    top: 10vh;
+}
+
+#mineIMG {
+    left: 30vw;
+    top: 20vh;
+}
+
+#arenaIMG {
+    left: 50vw;
+    top: 5vh;
+}
+
+#plainsIMG {
+    left: 70vw;
+    top: 40vh;
+}
+
+#forgeIMG {
+    left: 15vw;
+    top: 60vh;
+}
+
+#forestTXT {
+    left: 7.5vw;
+    top: 11vh;
+}
+
+#mineTXT {
+    left: 34.25vw;
+    top: 21vh;
+}
+
+#arenaTXT {
+    left: 53vw;
+    top: 8.5vh;
+}
+
+#plainsTXT {
+    left: 72.5vw;
+    top: 42vh;
+}
+
+#forgeTXT {
+    left: 18.25vw;
+    top: 63vh;
+}

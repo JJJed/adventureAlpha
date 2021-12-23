@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/static/css/mapSpots/forest.css') }}">
+    <script src="{{ url_for('static', filename='/static/js/mapSpots/forest.js') }}"></script>
+    <script>getID({{ id }});</script>
+    <meta charset="UTF-8">
+    <title>Forest</title>
+</head>
+<body>
+<div id="forestGUI">
+    <h1>Chop Down Tree</h1>
+    <div id="forestGUI0">
+        <h3 id="sizeTitle">Tree Size: <span id="size"></span></h3>
+        <div id="selectSize">
+            <button class="treeSizeBTN" id="treeSizeBTNsml" onclick="selectTreeSize(0);">Small</button>
+            <button class="treeSizeBTN" id="treeSizeBTNmed" onclick="selectTreeSize(1);">Medium</button>
+            <button class="treeSizeBTN" id="treeSizeBTNlrg" onclick="selectTreeSize(2);">Large</button>
+        </div>
+        <div id="chop">
+            <label for="bar">HP: <span id="currentHitsLeft"></span>/<span id="maxHits"></span></label>
+            <progress id="bar" value="100" max="100"></progress>
+            <button onclick="chop({{ dmg }});">Chop! DMG: <span id="dmgPerChop">{{ dmg }}</span></button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

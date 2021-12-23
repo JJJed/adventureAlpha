@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/ui-darkness/jquery-ui.css">
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/ui/1.13.0-rc.3/jquery-ui.js"
+  integrity="sha256-tYLuvehjddL4JcVWw1wRMB0oPSz7fKEpdZrIWf3rWNA="
+  crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='/static/js/login/RNope') }}"</script>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<form id="registerForm" action="" method="post">
+    {{form.userName.label}}<br>
+    {{form.userName(size=30)}}<br><br>
+
+    {{form.userTag.label}}<br>
+    {{form.userTag(size=30)}}<br><br>
+
+    {{form.userPswd.label}}<br>
+    {{form.userPswd(size=30)}}<br><br>
+
+    {{form.submit()}}
+</form>
+<h5 id="RNope" style="color: crimson;"></h5>
+</body>
+</html>
