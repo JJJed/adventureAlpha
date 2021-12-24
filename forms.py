@@ -6,6 +6,10 @@ import globalV as g
 import numpy as np
 import js2py
 from temp import *
+from bs4 import BeautifulSoup
+import lxml
+from io import StringIO, BytesIO
+
 
 mycursor = g.db.cursor()
 
@@ -22,6 +26,12 @@ class Register(FlaskForm):
     userPswd = PasswordField("Password")
     submit = SubmitField("Register!")
 
+    soup = BeautifulSoup('/templates/register.html', 'lxml')
+    soup.find(id='RNope').string.replace_with("")
+    file = open('/templates/register.html', 'w')
+    file.write(str(BeautifulSoup.prettify()))
+
+
     eval_res, tempfile = js2py.run_file("static/js/register/RNope.js")
     tempfile.RNope(1)
 
@@ -37,7 +47,11 @@ class Register(FlaskForm):
     rowcount = int(mycursor.rowcount)
 
     if rowcount == 0:
-        tempfile.RNope(0)
+        soup = BeautifulSoup('/templates/register.html', 'lxml')
+        soup.find(id='RNope').string.replace_with("")
+        file = open('/templates/register.html', 'w')
+        file.write(str(BeautifulSoup.prettify()))
+
         mycursor.execute("INSERT INTO `users`(`name`, `tag`, `passwd`) VALUES (%s, %s, %s)",
                          (str(userName), str(userTag), str(userPswd)))
         g.db.commit()
@@ -52,7 +66,10 @@ class Register(FlaskForm):
 
         render_template("login.html")
     elif rowcount > 0:
-        tempfile.RNope(1)
+        soup = BeautifulSoup('/templates/register.html', 'lxml')
+        soup.find(id='RNope').string.replace_with("Sorry that Username/Tag combination is already taken!")
+        file = open('/templates/register.html', 'w')
+        file.write(str(BeautifulSoup.prettify()))
 
 
 class Login(FlaskForm):
@@ -61,8 +78,10 @@ class Login(FlaskForm):
     userPSWD = PasswordField("Password")
     submit0 = SubmitField("Login!")
 
-    eval_res, tempfile = js2py.run_file("static/js/login/LNope.js")
-    tempfile.LNope(1)
+    soup = BeautifulSoup('/templates/login.html', 'lxml')
+    soup.find(id='LNope').string.replace_with("")
+    file = open('/templates/login.html', 'w')
+    file.write(str(BeautifulSoup.prettify()))
 
     mycursor.execute(
         "SELECT * FROM `users` WHERE `name` = " + userNAME + " && `tag` = " + userTAG + " && `passwd` = " + userPSWD)
@@ -76,9 +95,15 @@ class Login(FlaskForm):
     rows0 = mycursor.fetchall()
 
     if rowcount == 1:
-        tempfile.LNope(1)
+        soup = BeautifulSoup('/templates/login.html', 'lxml')
+        soup.find(id='LNope').string.replace_with("")
+        file = open('/templates/login.html', 'w')
+        file.write(str(BeautifulSoup.prettify()))
         for row in rows0:
             usrID = row[0]
             render_template("home.html", id=usrID)
     elif rowcount == 0:
-        tempfile.LNope(0)
+        soup = BeautifulSoup('/templates/login.html', 'lxml')
+        soup.find(id='LNope').string.replace_with("Incorrect Username/Tag/Password!")
+        file = open('/templates/login.html', 'w')
+        file.write(str(BeautifulSoup.prettify()))

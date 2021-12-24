@@ -1,8 +1,8 @@
 function LNope(x) {
     if(x == 1) {
-        $("#LNope").html("");
+        document.getElementById("LNope").html("");
     }
     else if(x == 0) {
-        $("#LNope").html("Incorrect Username/Tag/Password!");
+        document.getElementById("LNope").innerHTML = "Incorrect Username/Tag/Password!";
     }
 }

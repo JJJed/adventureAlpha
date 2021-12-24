@@ -1,8 +1,8 @@
 function RNope(x) {
     if(x == 1) {
-        $("#LNope").html("");
+        document.getElementById("RNope").innerHTML = "";
     }
     else if(x == 0) {
-        $("#LNope").html("Sorry that Username/Tag combination is already taken!");
+        document.getElementById("RNope").innerHTML = "Sorry that Username/Tag combination is already taken!";
     }
 }
