@@ -27,7 +27,9 @@ class Register(FlaskForm):
     submit = SubmitField("Register!")
 
     soup = BeautifulSoup('/templates/register.html', 'lxml')
-    soup.find(id='RNope').string.replace_with("")
+    bruv = soup.find(id='RNope')
+    if bruv.string != None:
+        bruv.replace_with(None)
     file = open('/templates/register.html', 'w')
     file.write(str(BeautifulSoup.prettify()))
 
@@ -48,7 +50,9 @@ class Register(FlaskForm):
 
     if rowcount == 0:
         soup = BeautifulSoup('/templates/register.html', 'lxml')
-        soup.find(id='RNope').string.replace_with("")
+        bruv = soup.find(id='RNope')
+        if bruv.string != None:
+            bruv.string.replace_with(None)
         file = open('/templates/register.html', 'w')
         file.write(str(BeautifulSoup.prettify()))
 
@@ -67,7 +71,9 @@ class Register(FlaskForm):
         render_template("login.html")
     elif rowcount > 0:
         soup = BeautifulSoup('/templates/register.html', 'lxml')
-        soup.find(id='RNope').string.replace_with("Sorry that Username/Tag combination is already taken!")
+        bruv = soup.find(id='RNope')
+        if bruv.string == None:
+            bruv.string.replace_with("Sorry that Username/Tag combination is already taken!")
         file = open('/templates/register.html', 'w')
         file.write(str(BeautifulSoup.prettify()))
 
@@ -79,7 +85,9 @@ class Login(FlaskForm):
     submit0 = SubmitField("Login!")
 
     soup = BeautifulSoup('/templates/login.html', 'lxml')
-    soup.find(id='LNope').string.replace_with("")
+    bruv = soup.find(id='LNope')
+    if bruv.string != None:
+        soup.find(id='LNope').string.replace_with(None)
     file = open('/templates/login.html', 'w')
     file.write(str(BeautifulSoup.prettify()))
 
@@ -96,7 +104,9 @@ class Login(FlaskForm):
 
     if rowcount == 1:
         soup = BeautifulSoup('/templates/login.html', 'lxml')
-        soup.find(id='LNope').string.replace_with("")
+        bruv = soup.find(id='LNope')
+        if bruv.string != None:
+            bruv.string.replace_with(None)
         file = open('/templates/login.html', 'w')
         file.write(str(BeautifulSoup.prettify()))
         for row in rows0:
@@ -104,6 +114,8 @@ class Login(FlaskForm):
             render_template("home.html", id=usrID)
     elif rowcount == 0:
         soup = BeautifulSoup('/templates/login.html', 'lxml')
-        soup.find(id='LNope').string.replace_with("Incorrect Username/Tag/Password!")
+        bruv = soup.find(id='LNope')
+        if bruv.string == None:
+            soup.find(id='LNope').string.replace_with("Incorrect Username/Tag/Password!")
         file = open('/templates/login.html', 'w')
         file.write(str(BeautifulSoup.prettify()))
