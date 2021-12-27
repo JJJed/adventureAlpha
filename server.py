@@ -23,13 +23,59 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = Register()
-    # return render_template("register.html")
-    # form = Register()
-    # if form.is_submitted():
-    #     result = request.form
-    #     return render_template("registrationComplete.html", result=result, score=score)
+    sub = False
+    if form.is_submitted():
+        result = request.form
+        sub = True
+        return render_template("registrationComplete.html", result=result)
     return render_template("register.html", form=form)
 
+@app.route("/reg_check", methods=["GET", "POST"])
+def reg_check():
+    if request.method == 'POST':
+        data = request.get_json()
+        user_name = str(data[0]["name"])
+        user_tag = str(data[1]["tag"])
+        user_passwd = str(data[2]["passwd"])
+        mycursor.execute("""SELECT * FROM `users` WHERE `name` = '%s' AND `tag` = '%s';""" % (user_name, user_tag))
+        rows = mycursor.fetchall()
+        rowcount = int(mycursor.rowcount)
+        if rowcount > 0:
+            return jsonify('', render_template("/data/data1", x=0))
+        elif rowcount == 0:
+            mycursor.execute("""INSERT INTO `users`(`name`, `tag`, `passwd`) VALUES ('%s', '%s', '%s');""" % (user_name, user_tag, user_passwd))
+            g.db.commit()
+
+            mycursor.execute("""SELECT `id` from `users` WHERE `name` = '%s' AND `tag` = '%s' AND `passwd` = '%s';""" % (user_name, user_tag, user_passwd))
+            rows = mycursor.fetchall()
+            for row in rows:
+                usrID = row[0]
+
+            mycursor.execute("INSERT INTO `userInv`(`id`) VALUES (%s);", (usrID))
+            g.db.commit()
+            return jsonify('', render_template("/data/data1", x=1))
+
+@app.route("/log_check", methods=["GET", "POST"])
+def log_check():
+    if request.method == 'POST':
+        data = request.get_json()
+        user_name = str(data[0]["name"])
+        user_tag = str(data[1]["tag"])
+        user_passwd = str(data[2]["passwd"])
+
+        mycursor.execute("""SELECT * FROM `users` WHERE `name` = '%s' AND `tag` = '%s' AND `passwd` = '%s';""" % (user_name, user_tag, user_passwd))
+        rows = mycursor.fetchall()
+        rowcount = int(mycursor.rowcount)
+
+        mycursor.execute("""SELECT `id` FROM `users` WHERE `name` = '%s' AND `tag` = '%s' AND `passwd` = '%s';""" % (user_name, user_tag, user_passwd))
+        rows0 = mycursor.fetchall()
+
+        if rowcount == 1:
+            for row in rows0:
+                usrID = row
+                render_template("home.html", id=usrID)
+        elif rowcount == 0:
+            return jsonify('', render_template("/data/data1", x=0))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
