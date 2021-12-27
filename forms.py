@@ -27,15 +27,15 @@ class Register(FlaskForm):
     userPswd = PasswordField("Password")
     submit = SubmitField("Register!")
 
-    with open('templates/register.html') as x:
-        data = x.read()
-    soup = BeautifulSoup(data, 'lxml')
-    try:
-        soup.find(id='RNope').decopose()
-    except AttributeError:
-        print("sus")
-    with open('templates/register.html', 'w') as file:
-        file.write(soup.prettify())
+    # with open('templates/register.html') as x:
+    #     data = x.read()
+    # soup = BeautifulSoup(data, 'lxml')
+    # try:
+    #     soup.find(id='RNope').decopose()
+    # except AttributeError:
+    #     print("sus")
+    # with open('templates/register.html', 'w') as file:
+    #     file.write(soup.prettify())
 
     # eval_res, tempfile = js2py.run_file("static/js/register/RNope.js")
     # tempfile.RNope(1)

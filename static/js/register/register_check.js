@@ -16,7 +16,7 @@ function checkReg() {
         dataType: "json",
         data: JSON.stringify(server_data),
         success: function(data) {
-            stat = getInt(data);
+            var stat = getInt(data);
         }
     });
     if (stat == 0) {

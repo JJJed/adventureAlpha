@@ -73,7 +73,7 @@ def log_check():
         if rowcount == 1:
             for row in rows0:
                 usrID = row
-                render_template("home.html", id=usrID)
+                return render_template("home.html", id=usrID)
         elif rowcount == 0:
             return jsonify('', render_template("/data/data1", x=0))
 
